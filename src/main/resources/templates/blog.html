@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nuestro Blog</title>
+    <!-- Enlace a Bootstrap CSS para estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OerSvM5Izz9WqxLgGgYQ4lJc1A/oWfA6y/t4S9m3yD/fM" crossorigin="anonymous">
+    <!-- Enlace a Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        html, body {
+          height: 100%;
+          margin: 0;
+        }
+        body {
+          display: flex;
+          flex-direction: column;
+          font-family: 'Inter', sans-serif; /* Consistencia de fuente */
+          background-color: #f8f9fa; /* Consistencia de fondo */
+        }
+        main {
+          flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
+        }
+        footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+          }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        /* Estilos copiados para consistencia con index/page1 */
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            border-radius: 0.5rem;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .bg-terciary {
+            background-color: #6c757d;
+        }
+        .jumbotron-custom {
+            border-radius: 1rem;
+            animation: slideIn 1s ease-out;
+            padding: 3rem 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilos específicos del blog */
+        .blog-card {
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        .blog-card img {
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+            height: 200px; /* Altura fija para consistencia en las imágenes del blog */
+            object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+        }
+    </style>
+</head>
+
+<body>
+<!-- HEADER COPIADO DIRECTAMENTE -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" th:href="@{/index}">🐾 Patitas Felices - Adopta con Amor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" th:href="@{/index}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/page1}">Catálogo de Mascotas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/blog}">BLOG!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/form}">Adopta con Nosotros</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item d-flex align-items-center me-2">
+                        <span class="nav-link text-white">Bienvenido, <span sec:authentication="name"></span></span>
+                    </li>
+                    <li class="nav-item">
+                        <form th:action="@{/logout}" method="post">
+                            <button type="submit" class="btn btn-outline-light ms-2 rounded-pill">Cerrar Sesión</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container mb-5">
+    <!-- Tu contenido aquí -->
+    <div class="text-center my-4">
+        <h1>Nuestro BLOG!</h1>
+        <ul>
+            Aqui se muestran diversas noticias y historias sucedidas en esta institucion publica.
+            Referente a las mascotas en adopcion
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card blog-card h-100">
+                    <img src="https://cdn.www.gob.pe/uploads/document/file/6867166/1012246-perroton-1.jpg" class="card-img-top" alt="Blog 1">
+                    <div class="card-body">
+                        <small class="text-muted">CDA · 28 mar · 2 Min. de lectura</small>
+                        <h5 class="card-title mt-2 text-warning">CLUB CDA: MÁS QUE UN CLUB, UNA COMUNIDAD PARA LOS AMANTES DE...</h5>
+                        <p class="card-text">Si eres un verdadero amante de los animales y quieres contribuir al bienestar de los...</p>
+                        <div class="d-flex justify-content-around text-muted">
+                            <span>👁️ 28</span><span>💬 6</span><span>❤️ 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-4">
+                <div class="card blog-card h-100">
+                    <img src="https://detrujillo.com/wp-content/uploads/2017/08/mpt-y-y-albergues-realizaron-campana-de-adopcion-de-mascotas.jpg" class="card-img-top" alt="Blog 2">
+                    <div class="card-body">
+                        <small class="text-muted">CDA · 28 mar · 2 Min. de lectura</small>
+                        <h5 class="card-title mt-2 text-warning">CONSULTORIO CDA: ¿CÓMO ACTUAR SI TU MASCOTA HA SIDO...</h5>
+                        <p class="card-text">Descubrir que tu mascota ha sido envenenada es una experiencia angustiante y...</p>
+                        <div class="d-flex justify-content-around text-muted">
+                            <span>👁️ 13</span><span>💬 6</span><span>❤️ 2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-4">
+                <div class="card blog-card h-100">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR07nTOipSbgAd9NOqw1ijBXo9ZFLLjwTfa4g&s" class="card-img-top" alt="Blog 3">
+                    <div class="card-body">
+                        <small class="text-muted">CDA · 28 mar · 2 Min. de lectura</small>
+                        <h5 class="card-title mt-2 text-warning">CDA VACUNA A PERRITOS DE ALBERGUE JUNTO A ESTUDIANTES...</h5>
+                        <p class="card-text">El pasado 22 de febrero, CDA visitó el albergue de Tiburones del Camino junto a un grupo de...</p>
+                        <div class="d-flex justify-content-around text-muted">
+                            <span>👁️ 116</span><span>💬 0</span><span>❤️ 999</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card blog-card h-100">
+                    <img src="https://www.zooplus.es/magazine/wp-content/uploads/2024/02/Capibara-1.jpeg" class="card-img-top" alt="Blog 1">
+                    <div class="card-body">
+                        <small class="text-muted">CDA · 28 mar · 2 Min. de lectura</small>
+                        <h5 class="card-title mt-2 text-warning">CLUB CDA: MÁS QUE UN CLUB, UNA COMUNIDAD PARA LOS AMANTES DE...</h5>
+                        <p class="card-text">Si eres un verdadero amante de los animales y quieres capybaras al bienestar de los...</p>
+                        <div class="d-flex justify-content-around text-muted">
+                            <span>👁️ 282</span><span>💬 63</span><span>❤️ 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card blog-card h-100">
+                    <img src="https://caracol.com.co/resizer/v2/WQJ3H34GPVENDDQMBGUFI3FPW4.jpg?auth=fbebb440453bae9c13ff5cffcb6d261fa91a17728270f0b5c05e031814a561c3&width=600&height=400&quality=70&smart=true" class="card-img-top" alt="Blog 1">
+                    <div class="card-body">
+                        <small class="text-muted">CDA · 28 mar · 2 Min. de lectura</small>
+                        <h5 class="card-title mt-2 text-warning">CLUB CDA: MÁS QUE UN CLUB, UNA COMUNIDAD PARA LOS AMANTES DE...</h5>
+                        <p class="card-text">Si eres un verdadero amante de los animales y quieres contribuir al bienestar de los...</p>
+                        <div class="d-flex justify-content-around text-muted">
+                            <span>👁️ 298</span><span>💬 68</span><span>❤️ -1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card blog-card h-100">
+                    <img src="https://detrujillo.com/wp-content/uploads/2017/08/mpt-y-y-albergues-realizaron-campana-de-adopcion-de-mascotas.jpg" class="card-img-top" alt="Blog 1">
+                    <div class="card-body">
+                        <small class="text-muted">CDA · 28 mar · 2 Min. de lectura</small>
+                        <h5 class="card-title mt-2 text-warning">CLUB CDA: MÁS QUE UN CLUB, UNA COMUNIDAD PARA LOS AMANTES DE...</h5>
+                        <p class="card-text">Si eres un verdadero amante de los animales y quieres contribuir al bienestar de los...</p>
+                        <div class="d-flex justify-content-around text-muted">
+                            <span>👁️ 218</span><span>💬 86</span><span>❤️ 88</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card blog-card h-100">
+                    <img src="https://cdn.www.gob.pe/uploads/document/file/6867166/1012246-perroton-1.jpg" class="card-img-top" alt="Blog 1">
+                    <div class="card-body">
+                        <small class="text-muted">CDA · 28 mar · 2 Min. de lectura</small>
+                        <h5 class="card-title mt-2 text-warning">CLUB CDA: MÁS QUE UN CLUB, UNA COMUNIDAD PARA LOS AMANTES DE...</h5>
+                        <p class="card-text">Si eres un verdadero amante de los animales y quieres contribuir al bienestar de los...</p>
+                        <div class="d-flex justify-content-around text-muted">
+                            <span>👁️ 280</span><span>💬 46</span><span>❤️ 14</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card blog-card h-100">
+                    <img src="https://mivet.com/wp-content/uploads/2024/10/Foto-Post-2-3.jpg" class="card-img-top" alt="Blog 1">
+                    <div class="card-body">
+                        <small class="text-muted">CDA · 28 mar · 2 Min. de lectura</small>
+                        <h5 class="card-title mt-2 text-warning">CLUB CDA: MÁS QUE UN CLUB, UNA COMUNIDAD PARA LOS AMANTES DE...</h5>
+                        <p class="card-text">Si eres un verdadero amante de los animales y quieres contribuir al bienestar de los...</p>
+                        <div class="d-flex justify-content-around text-muted">
+                            <span>👁️ 208</span><span>💬 60</span><span>❤️ 19</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card blog-card h-100">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHD8beAr8NrT7R5wuzTvQzWC2BPUQJGtNV0w&s" class="card-img-top" alt="Blog 1">
+                    <div class="card-body">
+                        <small class="text-muted">CDA · 28 mar · 2 Min. de lectura</small>
+                        <h5 class="card-title mt-2 text-warning">CLUB CDA: MÁS QUE UN CLUB, UNA COMUNIDAD PARA LOS AMANTES DE...</h5>
+                        <p class="card-text">Si eres un verdadero amante de los animales y quieres contribuir al bienestar de los...</p>
+                        <div class="d-flex justify-content-around text-muted">
+                            <span>👁️ 999</span><span>💬 65</span><span>❤️ 1547</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</main>
+
+<footer class="bg-dark text-white text-center p-4">
+    <div class="container">
+        <p class="mb-1">&copy; 2025 Centro de Adopción de Mascotas. Todos los derechos reservados.</p>
+        <p class="mb-1">📍 Av. Mascotas Felices 123, Lima, Perú</p>
+        <p class="mb-3">📞 +51 987 654 321 | ✉️ contacto@adopta.com</p>
+        <div>
+            <a href="#" class="text-white me-3">Facebook</a>
+            <a href="#" class="text-white me-3">Instagram</a>
+            <a href="#" class="text-white">Twitter</a>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</html>
